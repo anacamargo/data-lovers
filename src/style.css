@@ -2,17 +2,43 @@ body{
     background-color: black;
 }
 
-ul{
+.champion-list{
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-li{
-    display: inline-block;
-    width: 100px;
+.item{
     text-align: center;
+    width: 15%;
 }
 
-h2{
+.name{
     font-size: 16px;
     color: white;
+    margin: 0;
 }
+
+span{
+    color: white;
+}
+
+div{
+    display: inline;
+}
+
+button.active{
+    border: solid 2px blue;
+}
+
+.container-image{
+    margin: 10px;
+}
+
+.image{
+    margin: 0;
+    box-shadow: 0px 0px 15px #f5bb4f;
+    width: 100%;
+}
+

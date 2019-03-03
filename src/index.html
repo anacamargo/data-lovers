@@ -6,10 +6,36 @@
   <title>Data Lovers</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+<header>
+  <nav>
+    <figure><img src=""></figure>
+
+  </nav>
+</header>
+
 <body>
   <main id="root">
+    <section class="filter">
+      <button type="button" data-filter="assassin">assassin</button>
+      <button type="button" data-filter="fighter">fighter</button>
+      <button type="button" data-filter="mage">mage</button>
+      <button type="button" data-filter="marksman">marksman</button>
+      <button type="button" data-filter="melee">melee</button>
+      <button type="button" data-filter="support">support</button>
+      <button type="button" data-filter="tank">tank</button>
+      <select id="operator">
+        <option value="AND">AND</option>
+        <option value="OR">OR</option>
+      </select>
+
+      <select id="sort">
+        <option value="AZ">A-Z</option>
+        <option value="ZA">Z-A</option>
+      </select>
+
+    </section>
     <section class="content">
-      <ul id="champion-list">
+      <ul id="champion-list" class="champion-list">
       </ul>
     </section>
   </main>

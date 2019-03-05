@@ -1,5 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+@import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
+
+
 body{
     background-color: black;
+}
+
+.filter{
+    background-image: url(./image/header.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 193px;
+}
+
+.commands-placeholder{
+    position: relative;
+    top:102px;
+    text-align: center; 
 }
 
 .champion-list{
@@ -9,36 +26,69 @@ body{
     justify-content: center;
 }
 
-.item{
+.name, .classes{
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
     text-align: center;
-    width: 15%;
+    text-shadow: 0 0 6px black;
 }
 
 .name{
-    font-size: 16px;
-    color: white;
-    margin: 0;
+    font-family: 'Permanent Marker', cursive;
+    letter-spacing: 2px;
 }
 
-span{
-    color: white;
-}
-
-div{
-    display: inline;
+.classes{
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 button.active{
-    border: solid 2px blue;
+    box-shadow: 0px 0px 50px 1px rgba(78, 187, 238, 0.8);
+}
+button.active:hover{
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .container-image{
     margin: 10px;
-}
-
-.image{
-    margin: 0;
+    width: 154px;
+    height: 280px;
     box-shadow: 0px 0px 15px #f5bb4f;
-    width: 100%;
+    background-size: cover;
 }
 
+button, select{
+    margin: 3px;
+    padding: 5px;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border:none;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    width: 90px;
+}
+
+select option{
+    background-color: rgba(0, 0, 0, 0);
+    color:black;
+}
+
+
+button:hover{
+    box-shadow: 0px 0px 50px 1px rgba(78, 187, 238, 0.8);
+    background-color: rgba(78, 187, 238, 0.25);
+}

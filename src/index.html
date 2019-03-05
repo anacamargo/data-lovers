@@ -16,6 +16,7 @@
 <body>
   <main id="root">
     <section class="filter">
+      <div class="commands-placeholder">
       <button type="button" data-filter="assassin">assassin</button>
       <button type="button" data-filter="fighter">fighter</button>
       <button type="button" data-filter="mage">mage</button>
@@ -24,15 +25,18 @@
       <button type="button" data-filter="support">support</button>
       <button type="button" data-filter="tank">tank</button>
       <select id="operator">
-        <option value="AND">AND</option>
         <option value="OR">OR</option>
+        <option value="AND">AND</option>
       </select>
 
       <select id="sort">
         <option value="AZ">A-Z</option>
         <option value="ZA">Z-A</option>
+        <option value="Attack">Attack</option>
+        <option value="Defense">Defense</option>
+        <option value="Magic">Magic</option>
       </select>
-
+    </div>
     </section>
     <section class="content">
       <ul id="champion-list" class="champion-list">

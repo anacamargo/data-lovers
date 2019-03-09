@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 @import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
 
-
 body{
     background-color: black;
 }
@@ -23,7 +22,9 @@ body{
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
+    width: 98%;
+    margin: 0 auto;
 }
 
 .name, .classes{
@@ -44,7 +45,7 @@ body{
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 2px;
-    height: 230px;
+    height: 210px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -53,16 +54,9 @@ body{
 button.active{
     box-shadow: 0px 0px 50px 1px rgba(78, 187, 238, 0.8);
 }
+
 button.active:hover{
     background-color: rgba(0, 0, 0, 0);
-}
-
-.container-image{
-    margin: 10px;
-    width: 154px;
-    height: 280px;
-    box-shadow: 0px 0px 15px #f5bb4f;
-    background-size: cover;
 }
 
 button, select{
@@ -87,8 +81,66 @@ select option{
     color:black;
 }
 
-
-button:hover{
-    box-shadow: 0px 0px 50px 1px rgba(78, 187, 238, 0.8);
-    background-color: rgba(78, 187, 238, 0.25);
+.front, .back{
+    box-shadow: 0px 0px 15px #f5bb4f;
+    background-size: cover;
 }
+
+.flip-container { perspective: 1000; padding: 10px 10px 15px;}  	
+
+.flip-container.hover .flipper {  		
+    transform: rotateY(180deg);  	
+}
+
+.flip-container, .front, .back {  	
+    width:  154px;  	
+    height: 280px;  
+}
+
+.flipper {  	
+    transition: 0.6s;  	
+    transform-style: preserve-3d;    	
+    position: relative;  
+}
+    
+.front, .back {  	
+    backface-visibility: hidden;    	
+    position: absolute;  	
+    top: 0;  	
+    left: 0;  
+}
+    
+.front { z-index: 2;  }    
+
+.back { transform: rotateY(180deg); background-color:#4f3c21;}
+
+.info{
+    color: white;
+}
+
+.stats{
+    display: block;
+    padding-left: 25px;
+    height: 25px;
+    margin-top: 2px;
+    margin-left: 20px;
+    font-size: 14px;
+    background-image: url('./image/stat-icons-sprite.png');
+    background-repeat: no-repeat;
+    font-weight: bold;
+}
+
+.stats:first-of-type{
+    margin-top: 20px;
+}
+
+
+.icon-hp{background-position:0px -150px}
+.icon-regen {background-position:0px -175px}
+.icon-dmg{background-position:0px 0px}
+.icon-atk-spd{background-position:0px -50px}
+.icon-spd{background-position:0px -75px}
+.icon-armor {background-position:0px -25px}
+.icon-spell-res {background-position:0px -125px}
+.icon-mp{background-position:0px -200px}
+.icon-mp-regen{background-position:0px -225px}

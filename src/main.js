@@ -1,12 +1,12 @@
-async function init() { // Criei essa função assíncrona para usar o await e acessar o json.
+async function init() {
     const fileContent = await fetch('data/lol/lol.json');
-    const json = (await fileContent.json()).data; // na const json eu já tenho os dados.
+    const json = (await fileContent.json()).data;
 
-    const champions = Object.keys(json).reduce((list, champion) => { //retorna um array dos champions
+    const champions = Object.keys(json).reduce((list, champion) => {
         return list.concat(json[champion]);
     }, []);
 
-    const data = champions.map((champion) => { //retorna um array de obj dos itens que defini. 
+    const data = champions.map((champion) => { 
         return {
             id: champion.id,
             name: champion.name,
@@ -17,7 +17,18 @@ async function init() { // Criei essa função assíncrona para usar o await e a
             tags: champion.tags,
             attack: champion.info.attack,
             defense: champion.info.defense,
-            magic: champion.info.magic
+            magic: champion.info.magic,
+            stats: [
+                {css: 'icon-hp', name: 'HP', value: champion.stats.hp, perLevel: champion.stats.hpperlevel},
+                {css: 'icon-regen', name: 'HP Regeneration', value: champion.stats.hpregen, perLevel: champion.stats.hpregenperlevel},
+                {css: 'icon-dmg', name: 'Attack Damage',value: champion.stats.attackdamage, perLevel: champion.stats.attackdamageperlevel},
+                {css: 'icon-atk-spd', name: 'Attack Speed',value: champion.stats.attackspeedoffset, perLevel: champion.stats.attackspeedperlevel},
+                {css: 'icon-spd', name: 'Speed', value: champion.stats.movespeed, perLevel: champion.stats.mpperlevel},
+                {css: 'icon-armor', name: 'Armor', value: champion.stats.armor, perLevel: champion.stats.armorperlevel},
+                {css: 'icon-spell-res', name: 'Spell Resistance', value: champion.stats.spellblock, perLevel: champion.stats.spellblockperlevel},
+                {css: 'icon-mp', name: 'MP', value: champion.stats.mp, perLevel: champion.stats.mpperlevel},
+                {css: 'icon-mp-regen', name: 'MP Regeneration', value: champion.stats.mpregen, perLevel: champion.stats.mpregenperlevel}
+            ]
         }
     });
 
@@ -98,19 +109,25 @@ async function init() { // Criei essa função assíncrona para usar o await e a
                 ).reverse());
                 break;
         }
-
-
     }
 
     function show(data) {
         let list = document.querySelector('#champion-list');
         return list.innerHTML = `${data.map((champion) =>
-            `<li class="item">
-                <div class="container-image" style="background-image:url(image/${champion.id}.jpg)">
-                    <h2 class="name">${champion.name}</h2>
-                    <div class="classes">
-                        ${champion.tags.map(x => '<span class="tag">' + x + '<span/>').join(" | ")}
+            `<li class="flip-container" onclick="this.classList.toggle('hover');">
+                <div class="flipper">
+                    <div class="front container-image" style="background-image:url(image/${champion.id}.jpg)">
+                        <h2 class="name">${champion.name}</h2>
+                        <div class="classes">
+                            ${champion.tags.map(x => '<span>' + x + '<span/>').join(" | ")}
+                        </div>
                     </div>
+                    <div class="back" style="background-image:url(image/bg-back.png)">
+                        ${champion.stats.map(stat => 
+                            `<span title="${stat.name}" class="stats ${stat.css}">
+                                <span>${stat.value} (${stat.perLevel}/lvl)</span>
+                            </span>`).join('\n')}
+                    </div>  
                 </div>
             </li>`).join("")}`
     }

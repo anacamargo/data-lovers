@@ -43,25 +43,25 @@ async function init() {
     function buttonClicked() {
         const select = document.querySelector('#operator');
         const selectedValue = select.options[select.selectedIndex].value;
+        let filtered = data;        
         const buttons = document.querySelectorAll('button.active');
-        let filtered = data;
+
         if (buttons.length > 0) {
             let types = [...buttons].map(button => button.dataset['filter']);
-
             let filterTags = function (desired, tags) {
                 tags = tags.map(x => x.toLowerCase());
                 desired = desired.map(x => x.toLowerCase());
+
                 if (tags.length == 1) {
                     return desired.indexOf(tags[0]) > -1;
                 }
                 else {
                     if (selectedValue == "AND") {
-                        return (desired.indexOf(tags[0]) > -1 && desired.indexOf(tags[1]) > -1);
+                        return (desired.includes(tags[0]) && desired.includes(tags[1]));
                     }
-                    else return (desired.indexOf(tags[0]) > -1 || desired.indexOf(tags[1]) > -1);
+                    else return (desired.includes(tags[0]) || desired.includes(tags[1]));
                 }
             }
-
             filtered = data.filter(champion => filterTags(types, champion.tags));
         }
         sort(filtered);
@@ -70,6 +70,7 @@ async function init() {
     function sort(filtered) {
         const select = document.getElementById('sort');
         const selectedValue = select.options[select.selectedIndex].value;
+        
         switch (selectedValue) {
             case 'AZ':
                 show(filtered);
@@ -223,8 +224,7 @@ async function init() {
                 { css: 'icon-mp', name: 'MP', value: maxMP.value, perLevel: maxMP.name },
                 { css: 'icon-mp-regen', name: 'MP Regeneration', value: maxMPRegen.value, perLevel: maxMPRegen.name }
             ]
-        }
-    
+        }  
         return maxChamp;
     }
 
@@ -252,7 +252,6 @@ async function init() {
                 </div>
             </li>`).join("")}`
     }
-
     show(data);
 }
 

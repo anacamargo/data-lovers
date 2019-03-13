@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 @import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
 
-body{
-    background-color: black;
-}
+body{background-color: black;}
 
 .filter{
     background-image: url(./image/header.png);
@@ -61,7 +59,7 @@ button.active:hover{
 
 button, select{
     margin: 3px;
-    padding: 5px;
+    padding: 5px 0;
     font-family: 'ZCOOL QingKe HuangYou', cursive;
     font-size: 16px;
     font-weight: bold;
@@ -93,7 +91,7 @@ select option{
 }
 
 .flip-container, .front, .back {  	
-    width:  154px;  	
+    width:  154px;
     height: 280px;  
 }
 
@@ -133,7 +131,6 @@ select option{
 .stats:first-of-type{
     margin-top: 20px;
 }
-
 
 .icon-hp{background-position:0px -150px}
 .icon-regen {background-position:0px -175px}

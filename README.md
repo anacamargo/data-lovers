@@ -14,6 +14,7 @@ A interface foi pensada para que os usuários pudessem escolher seus campeões p
 Acreditamos que o produto atenda tanto jogadores iniciantes, que não possuem experiência e tenham dúvidas sobre os tipos de personagens, como jogadores mais assíduos que usariam o produto para consultar os dados e comparar os campeões. 
 
 Abaixo como exemplo temos a figura de duas possíveis personas: 
+
 ![Persona1](https://github.com/anacamargo/data-lovers/blob/master/src/image/persona.png)
 
 ## Desenho da interface de usuário e Protótipo

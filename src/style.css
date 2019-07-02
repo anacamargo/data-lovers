@@ -3,6 +3,15 @@
 
 body{background-color: black;}
 
+ul{
+    margin: 0px;
+    list-style: none;
+}
+
+li{
+    display: inline;
+}
+
 .filter{
     background-image: url(./image/header.png);
     background-position: center;
@@ -20,9 +29,8 @@ body{background-color: black;}
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
-    width: 98%;
-    margin: 0 auto;
+    justify-content: center;
+    max-width: 100%;
 }
 
 .name, .classes{
@@ -50,11 +58,15 @@ body{background-color: black;}
 }
 
 button.active{
-    box-shadow: 0px 0px 50px 1px rgba(78, 187, 238, 0.8);
+    box-shadow: 0px 0px 50px 8px rgba(78, 187, 238, 0.8);
 }
 
 button.active:hover{
     background-color: rgba(0, 0, 0, 0);
+}
+
+button:hover{
+    box-shadow: 0px 0px 50px 8px rgba(78, 187, 238, 0.8);
 }
 
 button, select{
@@ -80,7 +92,6 @@ select option{
 }
 
 .front, .back{
-    box-shadow: 0px 0px 15px #f5bb4f;
     background-size: cover;
 }
 
@@ -91,7 +102,7 @@ select option{
 }
 
 .flip-container, .front, .back {  	
-    width:  154px;
+    width:  160px;
     height: 280px;  
 }
 
@@ -110,7 +121,7 @@ select option{
     
 .front { z-index: 2;  }    
 
-.back { transform: rotateY(180deg); background-color:#4f3c21;}
+.back { transform: rotateY(180deg);}
 
 .info{
     color: white;
@@ -135,6 +146,11 @@ select option{
 
 .stats:first-of-type{
     margin-top: 20px;
+}
+
+.front:hover{
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px #f5bb4f;
 }
 
 .icon-hp{background-position:0px -150px}

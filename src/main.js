@@ -15,17 +15,17 @@ async function init() {
       defense: champion.info.defense,
       magic: champion.info.magic,
       stats: [
-        { css: 'icon-hp', name: 'HP', value: champion.stats.hp, perLevel: champion.stats.hpperlevel + "/lvl" },
-        { css: 'icon-regen', name: 'HP Regeneration', value: champion.stats.hpregen, perLevel: champion.stats.hpregenperlevel + "/lvl" },
-        { css: 'icon-dmg', name: 'Attack Damage', value: champion.stats.attackdamage, perLevel: champion.stats.attackdamageperlevel + "/lvl" },
-        { css: 'icon-atk-spd', name: 'Attack Speed', value: champion.stats.attackspeedoffset, perLevel: champion.stats.attackspeedperlevel + "/lvl" },
-        { css: 'icon-spd', name: 'Speed', value: champion.stats.movespeed, perLevel: champion.stats.mpperlevel + "/lvl" },
-        { css: 'icon-armor', name: 'Armor', value: champion.stats.armor, perLevel: champion.stats.armorperlevel + "/lvl" },
-        { css: 'icon-spell-res', name: 'Spell Resistance', value: champion.stats.spellblock, perLevel: champion.stats.spellblockperlevel + "/lvl" },
-        { css: 'icon-mp', name: 'MP', value: champion.stats.mp, perLevel: champion.stats.mpperlevel + "/lvl" },
-        { css: 'icon-mp-regen', name: 'MP Regeneration', value: champion.stats.mpregen, perLevel: champion.stats.mpregenperlevel + "/lvl" }
+        { css: 'icon-hp', name: 'HP', value: champion.stats.hp, perLevel: champion.stats.hpperlevel + '/lvl' },
+        { css: 'icon-regen', name: 'HP Regeneration', value: champion.stats.hpregen, perLevel: champion.stats.hpregenperlevel + '/lvl' },
+        { css: 'icon-dmg', name: 'Attack Damage', value: champion.stats.attackdamage, perLevel: champion.stats.attackdamageperlevel + '/lvl' },
+        { css: 'icon-atk-spd', name: 'Attack Speed', value: champion.stats.attackspeedoffset, perLevel: champion.stats.attackspeedperlevel + '/lvl' },
+        { css: 'icon-spd', name: 'Speed', value: champion.stats.movespeed, perLevel: champion.stats.mpperlevel + '/lvl' },
+        { css: 'icon-armor', name: 'Armor', value: champion.stats.armor, perLevel: champion.stats.armorperlevel + '/lvl' },
+        { css: 'icon-spell-res', name: 'Spell Resistance', value: champion.stats.spellblock, perLevel: champion.stats.spellblockperlevel + '/lvl' },
+        { css: 'icon-mp', name: 'MP', value: champion.stats.mp, perLevel: champion.stats.mpperlevel + '/lvl' },
+        { css: 'icon-mp-regen', name: 'MP Regeneration', value: champion.stats.mpregen, perLevel: champion.stats.mpregenperlevel + '/lvl' }
       ]
-    }
+    };
   });
 
   document.querySelector('#sort').addEventListener('change', buttonClicked);
@@ -37,7 +37,7 @@ async function init() {
     button.addEventListener('click', function(event) {
       event.target.classList.toggle('active');
       buttonClicked();
-    })
+    });
   }
 
   function buttonClicked() {
@@ -52,16 +52,14 @@ async function init() {
         tags = tags.map(x => x.toLowerCase());
         desired = desired.map(x => x.toLowerCase());
 
-        if (tags.length == 1) {
+        if (tags.length === 1) {
           return desired.indexOf(tags[0]) > -1;
-        }
-        else {
-          if (selectedValue == "AND") {
+        } else {
+          if (selectedValue === 'AND') {
             return (desired.includes(tags[0]) && desired.includes(tags[1]));
-          }
-          else return (desired.includes(tags[0]) || desired.includes(tags[1]));
+          } else return (desired.includes(tags[0]) || desired.includes(tags[1]));
         }
-      }
+      };
       filtered = data.filter(champion => filterTags(types, champion.tags));
     }
     sort(filtered);
@@ -109,41 +107,19 @@ async function init() {
   }
 
   function calculateMinStatistics(data) {
-    let minHP = data.reduce((min, x) => {
-      return (min.value === null || min.value > x.stats[0].value) ? { name: x.name, value: x.stats[0].value } : min;
-    }, { name: null, value: null });
+    const decideAccOrCurrentForStatus = (min, current, statusIndex) =>
+      (min.value === null || min.value > current.stats[statusIndex].value) ?
+        { name: current.name, value: current.stats[statusIndex].value } : min;
 
-    let minRegen = data.reduce((min, x) => {
-      return (min.value === null || min.value > x.stats[1].value) ? { name: x.name, value: x.stats[1].value } : min;
-    }, { name: null, value: null });
-
-    let minDmg = data.reduce((min, x) => {
-      return (min.value === null || min.value > x.stats[2].value) ? { name: x.name, value: x.stats[2].value } : min;
-    }, { name: null, value: null });
-
-    let minSpeed = data.reduce((min, x) => {
-      return (min.value === null || min.value > x.stats[3].value) ? { name: x.name, value: x.stats[3].value } : min;
-    }, { name: null, value: null });
-
-    let minAtSp = data.reduce((min, x) => {
-      return (min.value === null || min.value > x.stats[4].value) ? { name: x.name, value: x.stats[4].value } : min;
-    }, { name: null, value: null });
-
-    let minArmor = data.reduce((min, x) => {
-      return (min.value === null || min.value > x.stats[5].value) ? { name: x.name, value: x.stats[5].value } : min;
-    }, { name: null, value: null });
-
-    let minSpellRes = data.reduce((min, x) => {
-      return (min.value === null || min.value > x.stats[6].value) ? { name: x.name, value: x.stats[6].value } : min;
-    }, { name: null, value: null });
-
-    let minMP = data.reduce((min, x) => {
-      return (min.value === null || min.value > x.stats[7].value) ? { name: x.name, value: x.stats[7].value } : min;
-    }, { name: null, value: null });
-
-    let minMPRegen = data.reduce((min, x) => {
-      return (min.value === null || min.value > x.stats[8].value) ? { name: x.name, value: x.stats[8].value } : min;
-    }, { name: null, value: null });
+    let minHP = data.reduce((min, x) => decideAccOrCurrentForStatus(min, x, 0), { name: null, value: null });
+    let minRegen = data.reduce((min, x) => decideAccOrCurrentForStatus(min, x, 1), { name: null, value: null });
+    let minDmg = data.reduce((min, x) => decideAccOrCurrentForStatus(min, x, 2), { name: null, value: null });
+    let minAtSp = data.reduce((min, x) => decideAccOrCurrentForStatus(min, x, 3), { name: null, value: null });
+    let minSpeed = data.reduce((min, x) => decideAccOrCurrentForStatus(min, x, 4), { name: null, value: null });
+    let minArmor = data.reduce((min, x) => decideAccOrCurrentForStatus(min, x, 5), { name: null, value: null });
+    let minSpellRes = data.reduce((min, x) => decideAccOrCurrentForStatus(min, x, 6), { name: null, value: null });
+    let minMP = data.reduce((min, x) => decideAccOrCurrentForStatus(min, x, 7), { name: null, value: null });
+    let minMPRegen = data.reduce((min, x) => decideAccOrCurrentForStatus(min, x, 8), { name: null, value: null });
 
     const minChamp = {
       id: 'minimum',
@@ -163,48 +139,25 @@ async function init() {
         { css: 'icon-mp', name: 'MP', value: minMP.value, perLevel: minMP.name },
         { css: 'icon-mp-regen', name: 'MP Regeneration', value: minMPRegen.value, perLevel: minMPRegen.name }
       ]
-    }
+    };
 
     return minChamp;
   }
 
   function calculateMaxStatistics(data) {
+    const decideAccOrCurrentForStatus = (max, current, statusIndex) =>
+      (max.value === null || max.value < current.stats[statusIndex].value) ?
+        { name: current.name, value: current.stats[statusIndex].value } : max;
 
-    let maxHP = data.reduce((max, x) => {
-      return (max.value === null || max.value < x.stats[0].value) ? { name: x.name, value: x.stats[0].value } : max;
-    }, { name: null, value: null });
-
-    let maxRegen = data.reduce((max, x) => {
-      return (max.value === null || max.value < x.stats[1].value) ? { name: x.name, value: x.stats[1].value } : max;
-    }, { name: null, value: null });
-
-    let maxDmg = data.reduce((max, x) => {
-      return (max.value === null || max.value < x.stats[2].value) ? { name: x.name, value: x.stats[2].value } : max;
-    }, { name: null, value: null });
-
-    let maxSpeed = data.reduce((max, x) => {
-      return (max.value === null || max.value < x.stats[3].value) ? { name: x.name, value: x.stats[3].value } : max;
-    }, { name: null, value: null });
-
-    let maxAtSp = data.reduce((max, x) => {
-      return (max.value === null || max.value < x.stats[4].value) ? { name: x.name, value: x.stats[4].value } : max;
-    }, { name: null, value: null });
-
-    let maxArmor = data.reduce((max, x) => {
-      return (max.value === null || max.value < x.stats[5].value) ? { name: x.name, value: x.stats[5].value } : max;
-    }, { name: null, value: null });
-
-    let maxSpellRes = data.reduce((max, x) => {
-      return (max.value === null || max.value < x.stats[6].value) ? { name: x.name, value: x.stats[6].value } : max;
-    }, { name: null, value: null });
-
-    let maxMP = data.reduce((max, x) => {
-      return (max.value === null || max.value < x.stats[7].value) ? { name: x.name, value: x.stats[7].value } : max;
-    }, { name: null, value: null });
-
-    let maxMPRegen = data.reduce((max, x) => {
-      return (max.value === null || max.value < x.stats[8].value) ? { name: x.name, value: x.stats[8].value } : max;
-    }, { name: null, value: null });
+    let maxHP = data.reduce((max, x) => decideAccOrCurrentForStatus(max, x, 0), { name: null, value: null });
+    let maxRegen = data.reduce((max, x) => decideAccOrCurrentForStatus(max, x, 1), { name: null, value: null });
+    let maxDmg = data.reduce((max, x) => decideAccOrCurrentForStatus(max, x, 2), { name: null, value: null });
+    let maxAtSp = data.reduce((max, x) => decideAccOrCurrentForStatus(max, x, 3), { name: null, value: null });
+    let maxSpeed = data.reduce((max, x) => decideAccOrCurrentForStatus(max, x, 4), { name: null, value: null });
+    let maxArmor = data.reduce((max, x) => decideAccOrCurrentForStatus(max, x, 5), { name: null, value: null });
+    let maxSpellRes = data.reduce((max, x) => decideAccOrCurrentForStatus(max, x, 6), { name: null, value: null });
+    let maxMP = data.reduce((max, x) => decideAccOrCurrentForStatus(max, x, 7), { name: null, value: null });
+    let maxMPRegen = data.reduce((max, x) =>decideAccOrCurrentForStatus(max, x, 8), { name: null, value: null });
 
     const maxChamp = {
       id: 'maximum',
@@ -224,7 +177,7 @@ async function init() {
         { css: 'icon-mp', name: 'MP', value: maxMP.value, perLevel: maxMP.name },
         { css: 'icon-mp-regen', name: 'MP Regeneration', value: maxMPRegen.value, perLevel: maxMPRegen.name }
       ]
-    }
+    };
     return maxChamp;
   }
 
@@ -240,17 +193,17 @@ async function init() {
             <div class="front container-image" style="background-image:url(src/image/${champion.id}.png)">
               <h2 class="name" data-chart="${champion.name}">${champion.name}</h2>
               <div class="classes">
-                ${champion.tags.map(x => '<span>' + x + '<span/>').join(" | ")}
+                ${champion.tags.map(x => '<span>' + x + '<span/>').join(' | ')}
               </div>
             </div>
             <div class="back" style="background-image:url(src/image/bg-back.png)">
-              ${champion.stats.map(stat =>
-                `<span title="${stat.name}" class="stats ${stat.css}">
-                    <span>${stat.value} (${stat.perLevel})</span>
-                  </span>`).join('\n')}
-             </div>  
+              ${champion.stats.map(stat => `
+                <span title="${stat.name}" class="stats ${stat.css}">
+                  <span>${stat.value} (${stat.perLevel})</span>
+                </span>`).join('\n')}
+            </div>  
           </div>
-        </li>`).join("")}`
+        </li>`).join('')}`;
   }
   show(data);
 }
